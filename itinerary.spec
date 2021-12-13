@@ -1,7 +1,7 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 Summary:	Itinerary display application
 Name:		itinerary
-Version:	21.08.3
+Version:	21.12.0
 Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2+
@@ -56,6 +56,8 @@ Itinerary display application
 %{_datadir}/metainfo/org.kde.itinerary.appdata.xml
 %{_datadir}/qlogging-categories5/org_kde_itinerary.categories
 %{_datadir}/icons/hicolor/*/*/org.kde.itinerary.*
+%{_libdir}/qt5/plugins/itinerarythumbnail.so
+%{_datadir}/kservices5/itinerarythumbnail.desktop
 
 %prep
 %autosetup -p1
