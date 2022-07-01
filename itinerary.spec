@@ -2,7 +2,7 @@
 Summary:	Itinerary display application
 Name:		itinerary
 Version:	22.04.1
-Release:	2
+Release:	3
 Group:		Graphical desktop/KDE
 License:	GPLv2+
 Url:		http://kde.org/
