@@ -1,8 +1,8 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 Summary:	Itinerary display application
 Name:		itinerary
-Version:	22.08.2
-Release:	2
+Version:	22.08.3
+Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2+
 Url:		http://kde.org/
@@ -73,4 +73,4 @@ Itinerary display application
 
 %install
 %ninja_install -C build
-%find_lang kde-itinerary kde-itinerary-android kde-itinerary.lang
+%find_lang kde-itinerary kde-itinerary-android kde-itinerary-android._static_ kde-itinerary.lang
