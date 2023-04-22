@@ -1,8 +1,8 @@
 %define stable %([ "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
 Summary:	Itinerary display application
 Name:		itinerary
-Version:	23.03.90
-Release:	2
+Version:	23.04.0
+Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2+
 Url:		http://kde.org/
@@ -42,7 +42,6 @@ BuildRequires:	cmake(KF5Crash)
 BuildRequires:	cmake(KF5KIO)
 BuildRequires:	cmake(KF5FileMetaData)
 BuildRequires:	cmake(KF5KirigamiAddons)
-BuildRequires:	cmake(KHealthCertificate)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(openssl)
@@ -50,8 +49,7 @@ BuildRequires:	pkgconfig(libical)
 BuildRequires:	cmake
 BuildRequires:	ninja
 Requires:	qml(org.kde.kitemmodels)
-Requires:	org.kde.kopeninghours
-Requires:	qtmultimedia5
+Requires:	qt5-qtmultimedia
 
 %description
 Itinerary display application.
