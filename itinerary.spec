@@ -2,7 +2,7 @@
 Summary:	Itinerary display application
 Name:		itinerary
 Version:	23.04.0
-Release:	1
+Release:	2
 Group:		Graphical desktop/KDE
 License:	GPLv2+
 Url:		http://kde.org/
@@ -46,9 +46,12 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(libical)
-BuildRequires:	cmake
-BuildRequires:	ninja
+#BuildRequires:	cmake(KHealthCertificate)
+BuildRequires:	qml(org.kde.kitemmodels)
+BuildRequires:	qml(org.kde.kopeninghours)
+BuildRequires:	qt5-qtmultimedia
 Requires:	qml(org.kde.kitemmodels)
+Requires:	qml(org.kde.kopeninghours)
 Requires:	qt5-qtmultimedia
 
 %description
