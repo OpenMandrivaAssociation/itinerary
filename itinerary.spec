@@ -1,7 +1,7 @@
 %define stable %([ "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
 Summary:	Itinerary display application
 Name:		itinerary
-Version:	23.08.3
+Version:	23.08.4
 Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2+
@@ -72,6 +72,9 @@ Itinerary display application.
 
 %prep
 %autosetup -p1
+# Workaround for https://github.com/llvm/llvm-project/issues/73418
+export CC=gcc
+export CXX=g++
 %cmake_kde5
 
 %build
