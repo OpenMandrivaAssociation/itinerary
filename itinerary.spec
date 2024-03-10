@@ -24,7 +24,7 @@ BuildRequires:	cmake(KF5NetworkManagerQt)
 BuildRequires:	cmake(KF5UnitConversion)
 BuildRequires:	cmake(KPimPkPass)
 BuildRequires:	cmake(KPimItinerary)
-BuildRequires:	cmake(KPublicTransport)
+BuildRequires:	cmake(KPublicTransport) < 24.0
 BuildRequires:	cmake(KOSMIndoorMap)
 BuildRequires:	cmake(SharedMimeInfo)
 BuildRequires:	cmake(ZLIB)
