@@ -1,0 +1,497 @@
+{
+    "id": "org.kde.itinerary",
+    "branch": "master",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "6.7",
+    "sdk": "org.kde.Sdk",
+    "command": "itinerary",
+    "tags": [
+        "nightly"
+    ],
+    "desktop-file-name-suffix": " (Nightly)",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--share=network",
+        "--talk-name=org.kde.kwalletd5",
+        "--talk-name=org.kde.kwalletd6"
+    ],
+    "modules": [
+        {
+            "name": "poppler",
+            "config-opts": [
+                "-DENABLE_TESTING=OFF",
+                "-DENABLE_UNSTABLE_API_ABI_HEADERS=ON",
+                "-DENABLE_BOOST=OFF",
+                "-DENABLE_CPP=OFF",
+                "-DENABLE_GLIB=OFF",
+                "-DENABLE_GOBJECT_INTROSPECTION=OFF",
+                "-DENABLE_LIBCURL=OFF",
+                "-DENABLE_UTILS=OFF",
+                "-DENABLE_QT5=OFF",
+                "-DENABLE_QT6=OFF",
+                "-DENABLE_SPLASH=OFF",
+                "-DWITH_Cairo=OFF"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://poppler.freedesktop.org/poppler-24.04.0.tar.xz",
+                    "sha256": "1e804ec565acf7126eb2e9bb3b56422ab2039f7e05863a5dfabdd1ffd1bb77a7",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 3686,
+                        "stable-only": true,
+                        "url-template": "https://poppler.freedesktop.org/poppler-$version.tar.xz"
+                    }
+                }
+            ],
+            "modules": [
+                {
+                    "name": "openjpeg",
+                    "buildsystem": "cmake-ninja",
+                    "builddir": true,
+                    "config-opts": [
+                        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                        "-DBUILD_STATIC_LIBS=OFF",
+                        "-DBUILD_CODEC=OFF"
+                    ],
+                    "cleanup": [
+                        "/bin",
+                        "/include",
+                        "/lib/*.a",
+                        "/lib/openjpeg-*",
+                        "/lib/pkgconfig"
+                    ],
+                    "sources": [
+                        {
+                            "type": "archive",
+                            "url": "https://github.com/uclouvain/openjpeg/archive/v2.5.0.tar.gz",
+                            "sha256": "0333806d6adecc6f7a91243b2b839ff4d2053823634d4f6ed7a59bc87409122a",
+                            "x-checker-data": {
+                                "type": "anitya",
+                                "project-id": 2550,
+                                "stable-only": true,
+                                "url-template": "https://github.com/uclouvain/openjpeg/archive/v$version.tar.gz"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "libphonenumer",
+            "buildsystem": "cmake-ninja",
+            "subdir": "cpp",
+            "config-opts": [
+                "-DUSE_BOOST=OFF",
+                "-DBUILD_TESTING=OFF",
+                "-DREGENERATE_METADATA=OFF",
+                "-DBUILD_STATIC_LIB=OFF",
+                "-DBUILD_GEOCODER=OFF",
+                "-DFETCHCONTENT_FULLY_DISCONNECTED=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/google/libphonenumber/archive/refs/tags/v8.13.18.tar.gz",
+                    "sha256": "54578d748ce38eea8c3530e49c1adf09272ef4535ed32db2555ab39b0b8851c0"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake"
+            ],
+            "modules": [
+                {
+                    "name": "abseil-cpp",
+                    "buildsystem": "cmake-ninja",
+                    "config-opts": [
+                        "-DCMAKE_BUILD_TYPE=Release",
+                        "-DCMAKE_CXX_STANDARD=17",
+                        "-DABSL_PROPAGATE_CXX_STD=ON",
+                        "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+                    ],
+                    "sources": [
+                        {
+                            "type": "archive",
+                            "url": "https://github.com/abseil/abseil-cpp/archive/refs/tags/20230125.1.tar.gz",
+                            "sha256": "81311c17599b3712069ded20cca09a62ab0bf2a89dfa16993786c8782b7ed145"
+                        }
+                    ],
+                    "cleanup": [
+                        "/include",
+                        "/lib/*.a",
+                        "/lib/cmake",
+                        "/lib/pkgconfig"
+                    ]
+                },
+                {
+                    "name": "protobuf",
+                    "buildsystem": "autotools",
+                    "sources": [
+                        {
+                            "type": "archive",
+                            "url": "https://github.com/protocolbuffers/protobuf/archive/refs/tags/v21.12.tar.gz",
+                            "sha256": "22fdaf641b31655d4b2297f9981fa5203b2866f8332d3c6333f6b0107bb320de",
+                            "x-checker-data": {
+                                "type": "anitya",
+                                "project-id": 3715,
+                                "stable-only": true,
+                                "url-template": "https://github.com/protocolbuffers/protobuf/archive/refs/tags/v$version.tar.gz"
+                            }
+                        }
+                    ],
+                    "cleanup": [
+                        "/bin",
+                        "/include",
+                        "/lib/*.a",
+                        "/lib/*.la",
+                        "/lib/libprotoc*",
+                        "/lib/libprotobuf-lite*",
+                        "/lib/pkgconfig"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "kpkpass",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/kpkpass",
+                    "branch": "release/24.05"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/mkspecs",
+                "/etc/xdg/*categories",
+                "/share/qlogging-categories5"
+            ]
+        },
+        {
+            "name": "kmime",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/kmime",
+                    "branch": "release/24.05"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/mkspecs",
+                "/etc/xdg/*categories",
+                "/share/qlogging-categories5"
+            ]
+        },
+        {
+            "name": "zxing",
+            "config-opts": [
+                "-DBUILD_DEPENDENCIES=LOCAL",
+                "-DBUILD_SHARED_LIBS=OFF",
+                "-DBUILD_UNIT_TESTS=OFF",
+                "-DBUILD_BLACKBOX_TESTS=OFF",
+                "-DBUILD_EXAMPLES=OFF"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "cleanup": [
+                "/include",
+                "*.pc",
+                "/lib/*/cmake",
+                "libZXing.so"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/zxing-cpp/zxing-cpp/archive/v2.1.0.tar.gz",
+                    "sha256": "6d54e403592ec7a143791c6526c1baafddf4c0897bb49b1af72b70a0f0c4a3fe"
+                }
+            ]
+        },
+        {
+            "name": "kitinerary",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DBUILD_TOOLS=OFF"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/kitinerary",
+                    "branch": "release/24.05"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/lib/libexec",
+                "/mkspecs",
+                "/etc/xdg/*categories",
+                "/share/qlogging-categories5"
+            ]
+        },
+        {
+            "name": "kpublictransport",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DBUILD_WITH_QT6=ON"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/libraries/kpublictransport",
+                    "branch": "release/24.05"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/mkspecs",
+                "/etc/xdg/*categories",
+                "/share/qlogging-categories5"
+            ]
+        },
+        {
+            "name": "kopeninghours",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DBUILD_WITH_QT6=ON"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/libraries/kopeninghours",
+                    "branch": "release/24.05"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/mkspecs",
+                "/etc/xdg/*categories",
+                "/share/qlogging-categories5"
+            ]
+        },
+        {
+            "name": "kosmindoormap",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/libraries/kosmindoormap",
+                    "branch": "release/24.05"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/mkspecs",
+                "/etc/xdg/*categories",
+                "/share/qlogging-categories5"
+            ]
+        },
+        {
+            "name": "khealthcertificate",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DBUILD_WITH_QT6=ON"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [ { "type": "git", "url": "https://invent.kde.org/pim/khealthcertificate.git", "branch": "release/24.05"} ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/mkspecs",
+                "/etc/xdg/*categories",
+                "/share/qlogging-categories5"
+            ]
+        },
+        {
+            "name": "kirigami-addons",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.kde.org/stable/kirigami-addons/kirigami-addons-1.1.0.tar.xz",
+                    "sha256": "8ef352499139616b3142a6d7a92ab23749c568403ece8d854f064a941d085536"
+                }
+            ],
+            "cleanup": [
+                "/lib/cmake"
+            ]
+        },
+        {
+            "name": "libQuotient",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/quotient-im/libQuotient/archive/0.8.2.tar.gz",
+                    "sha256": "12ff2fa8b80a934b9dd88fa3416a4b88e94bc0e18a8df0dcebfc90614dd2f5c9",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 89357,
+                        "stable-only": true,
+                        "url-template": "https://github.com/quotient-im/libQuotient/archive/$version.tar.gz"
+                    }
+                }
+            ],
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DQuotient_ENABLE_E2EE=ON",
+                "-DBUILD_TESTING=OFF",
+                "-DBUILD_WITH_QT6=ON"
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/*.a",
+                "/lib/cmake",
+                "/lib/pkgconfig",
+                "/share/ndk-modules"
+            ],
+            "modules": [
+                {
+                    "name": "olm",
+                    "buildsystem": "cmake-ninja",
+                    "config-opts": [ "-DOLM_TESTS=OFF" ],
+                    "sources": [
+                        {
+                            "type": "git",
+                            "url": "https://gitlab.matrix.org/matrix-org/olm.git",
+                            "tag": "3.2.10",
+                            "x-checker-data": {
+                                "type": "git",
+                                "tag-pattern": "^([\\d.]+)$"
+                            },
+                            "commit": "9908862979147a71dc6abaecd521be526ae77be1"
+                        }
+                    ],
+                    "cleanup": [
+                        "/include",
+                        "/lib/cmake",
+                        "/lib/pkgconfig"
+                    ]
+                },
+                {
+                    "name": "qtkeychain",
+                    "buildsystem": "cmake-ninja",
+                    "sources": [
+                        {
+                            "type": "archive",
+                            "url": "https://github.com/frankosterfeld/qtkeychain/archive/0.14.2.tar.gz",
+                            "sha256": "cf2e972b783ba66334a79a30f6b3a1ea794a1dc574d6c3bebae5ffd2f0399571",
+                            "x-checker-data": {
+                                "type": "anitya",
+                                "project-id": 4138,
+                                "stable-only": true,
+                                "url-template": "https://github.com/frankosterfeld/qtkeychain/archive/$version.tar.gz"
+                            }
+                        }
+                    ],
+                    "config-opts": [
+                        "-DCMAKE_INSTALL_LIBDIR=/app/lib",
+                        "-DLIB_INSTALL_DIR=/app/lib",
+                        "-DBUILD_TRANSLATIONS=NO",
+                        "-DBUILD_WITH_QT6=ON"
+                    ],
+                    "cleanup": [
+                        "/include",
+                        "/lib/cmake",
+                        "/mkspecs"
+                    ],
+                    "modules": [
+                        {
+                            "name": "libsecret",
+                            "buildsystem": "meson",
+                            "config-opts": [
+                                "-Dmanpage=false",
+                                "-Dvapi=false",
+                                "-Dgtk_doc=false",
+                                "-Dintrospection=false",
+                                "-Dgcrypt=false"
+                            ],
+                            "sources": [
+                                {
+                                    "type": "archive",
+                                    "url": "https://download.gnome.org/sources/libsecret/0.20/libsecret-0.20.5.tar.xz",
+                                    "sha256": "3fb3ce340fcd7db54d87c893e69bfc2b1f6e4d4b279065ffe66dac9f0fd12b4d",
+                                    "x-checker-data": {
+                                        "type": "gnome",
+                                        "name": "libsecret",
+                                        "stable-only": true
+                                    }
+                                }
+                            ],
+                            "cleanup": [
+                                "/bin/secret-tool",
+                                "/include",
+                                "/lib/pkgconfig"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "itinerary",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DCMAKE_DISABLE_FIND_PACKAGE_KF6KIO=ON",
+                "-DCMAKE_DISABLE_FIND_PACKAGE_KF6FileMetaData=ON",
+                "-DFLATPAK_BUILD=ON"
+            ],
+            "cleanup": [
+                "/etc/xdg/*categories",
+                "/share/qlogging-categories5"
+            ]
+        }
+    ]
+}
