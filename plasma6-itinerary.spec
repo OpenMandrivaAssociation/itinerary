@@ -2,7 +2,7 @@
 Summary:	Itinerary display application
 Name:		plasma6-itinerary
 Version:	24.12.3
-Release:	2
+Release:	3
 Group:		Graphical desktop/KDE
 License:	GPLv2+
 Url:		https://kde.org/
