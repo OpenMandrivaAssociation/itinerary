@@ -1,8 +1,8 @@
 %define stable %([ "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
 Summary:	Itinerary display application
 Name:		plasma6-itinerary
-Version:	24.12.3
-Release:	3
+Version:	25.04.0
+Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2+
 Url:		https://kde.org/
