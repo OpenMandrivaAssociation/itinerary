@@ -1,7 +1,7 @@
 %define stable %([ "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
 Summary:	Itinerary display application
 Name:		itinerary
-Version:	25.04.0
+Version:	25.04.3
 Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2+
@@ -52,10 +52,15 @@ BuildRequires:	qml(org.kde.kopeninghours)
 Requires:	qml(org.kde.kitemmodels)
 Requires:	qml(org.kde.kopeninghours)
 
+%rename plasma6-itinerary
+
+BuildSystem:	cmake
+BuildOption:	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
+
 %description
 Itinerary display application.
 
-%files -f kde-itinerary.lang
+%files -f %{name}.lang
 %{_bindir}/itinerary
 %{_libdir}/libSolidExtras.so
 %{_qtdir}/plugins/kf6/kfilemetadata/kfilemetadata_itineraryextractor.so
@@ -67,16 +72,3 @@ Itinerary display application.
 %{_datadir}/knotifications6/itinerary.notifyrc
 %{_datadir}/metainfo/org.kde.itinerary.appdata.xml
 %{_datadir}/qlogging-categories6/org_kde_itinerary.categories
-
-%prep
-%autosetup -p1 -n itinerary-%{version}
-%cmake \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
-	-G Ninja
-
-%build
-%ninja_build -C build
-
-%install
-%ninja_install -C build
-%find_lang kde-itinerary kde-itinerary-android kde-itinerary-android._static_ kde-itinerary.lang
