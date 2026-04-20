@@ -1,7 +1,7 @@
 %define stable %([ "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
 Summary:	Itinerary display application
 Name:		itinerary
-Version:	25.12.3
+Version:	26.04.0
 Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2+
@@ -64,11 +64,8 @@ Itinerary display application.
 
 %files -f %{name}.lang
 %{_bindir}/itinerary
-%{_libdir}/libSolidExtras.so
 %{_qtdir}/plugins/kf6/kfilemetadata/kfilemetadata_itineraryextractor.so
 %{_qtdir}/plugins/kf6/thumbcreator/itinerarythumbnail.so
-%{_qtdir}/qml/org/kde/solidextras/libsolidextrasqmlplugin.so
-%{_qtdir}/qml/org/kde/solidextras/qmldir
 %{_datadir}/applications/org.kde.itinerary.desktop
 %{_datadir}/icons/hicolor/scalable/apps/org.kde.itinerary.svg
 %{_datadir}/knotifications6/itinerary.notifyrc
