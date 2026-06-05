@@ -1,8 +1,8 @@
 %define stable %([ "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
 Summary:	Itinerary display application
 Name:		itinerary
-Version:	26.04.0
-Release:	2
+Version:	26.04.2
+Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2+
 Url:		https://kde.org/
