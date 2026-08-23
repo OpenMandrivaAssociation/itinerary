@@ -1,0 +1,21 @@
+--- a/src/app/main.cpp	2026-08-14 05:28:47.000000000 +0200
++++ b/src/app/main.cpp	2026-08-23 04:58:51.407546986 +0200
+@@ -101,8 +101,6 @@
+ #include <QWindow>
+ 
+ #if HAVE_MAPLIBRE
+-#include <QMapLibre/Utils>
+-#include <QVulkanInstance>
+ #include <QtQuick/QSGRendererInterface>
+ #endif
+ 
+@@ -186,8 +184,7 @@
+ int main(int argc, char **argv)
+ {
+ #if HAVE_MAPLIBRE
+-    const QMapLibre::RendererType rendererType = QMapLibre::supportedRendererType();
+-    auto graphicsApi = static_cast<QSGRendererInterface::GraphicsApi>(rendererType);
++    auto graphicsApi = QSGRendererInterface::OpenGL;
+     QQuickWindow::setGraphicsApi(graphicsApi);
+ #endif
+ 

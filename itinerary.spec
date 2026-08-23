@@ -2,11 +2,13 @@
 Summary:	Itinerary display application
 Name:		itinerary
 Version:	26.08.0
-Release:	1
+Release:	2
 Group:		Graphical desktop/KDE
 License:	GPLv2+
 Url:		https://kde.org/
 Source0:	http://download.kde.org/%{stable}/release-service/%{version}/src/itinerary-%{version}.tar.xz
+# QMapLibre 3.x has no RendererType; 4.0 is unreleased
+Patch0:		itinerary-26.08.0-qmaplibre-3.patch
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(Git)
 BuildRequires:	cmake(Qt6Test)
@@ -49,10 +51,12 @@ BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(libical)
 #BuildRequires:	cmake(KHealthCertificate)
+BuildRequires:	cmake(QMapLibre)
 BuildRequires:	qml(org.kde.kitemmodels)
 BuildRequires:	qml(org.kde.kopeninghours)
 Requires:	qml(org.kde.kitemmodels)
 Requires:	qml(org.kde.kopeninghours)
+Requires:	qml(MapLibre)
 
 %rename plasma6-itinerary
 
