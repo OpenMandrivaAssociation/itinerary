@@ -50,6 +50,11 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(libical)
+# KHealthCertificate is optional. Without it, HealthCertificateManager
+# reports itself unavailable and the certificate pages are not opened.
+# Those pages are still in the QML module, so qmldeps would require a
+# module we do not package.
+%global __requires_exclude ^qml\\(org\\.kde\\.khealthcertificate\\)$
 #BuildRequires:	cmake(KHealthCertificate)
 BuildRequires:	cmake(QMapLibre)
 BuildRequires:	qml(org.kde.kitemmodels)
